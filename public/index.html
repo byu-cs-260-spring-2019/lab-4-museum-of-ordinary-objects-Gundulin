@@ -4,13 +4,14 @@
 <head>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
   <title>Museum of Ordinary Objects</title>
 </head>
 
 <body>
   <div class="header">
     <div class="logo">
-      <img src="/images/ordinary.png">
+      <img src="./images/ordinary.png">
     </div>
     <div class="title">
       <h2>CS 260</h2>
@@ -18,6 +19,11 @@
     </div>
   </div>
   <div id="app" class="content">
+    <section class="image-gallery">
+        <div class="image" v-for="item in items">
+          <h2>{{item.title}}</h2>
+          <img :src="item.path" />
+        </div>
   </div>
   <div class="footer">
     <a href="/admin.html">Admin</a>
