@@ -3,6 +3,9 @@ var app = new Vue({
   data: {
     items: [],
   },
+  created() {
+    this.getItems();
+  },
   methods: {
     async getItems() {
       try {
@@ -14,7 +17,5 @@ var app = new Vue({
       }
     },
   },
-  created() {
-    this.getItems();
-  },
+
 });
