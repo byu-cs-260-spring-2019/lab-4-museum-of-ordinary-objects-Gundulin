@@ -2,17 +2,21 @@ var app = new Vue({
   el: '#admin',
   data: {
     title: "",
-    selected:  "",
+    selected: "",
     addItem: null,
     photos: [
       {name: 'baseball', id: 1, path: '/images/baseball.jpg'},
-      {name: 'car', id: 2, path: 'car.jpg'},
-      {name: 'glasses', id: 3, path: 'glasses.jpg'},
-      {name: 'paintbrush', id: 4, path: 'paintbrush.jpg'},
-      {name: 'pen', id: 5, path: 'pen.jpg'},
-      {name: 'scissors', id: 6, path: 'scissors.jpg'},
-      {name: 'trowel', id: 7, path: 'trowel.jpg'},
-      {name: 'slinky', id: 8, path: 'slinky.jpg'},
+      {name: 'car', id: 2, path: '/images/car.jpg'},
+      {name: 'glasses', id: 3, path: '/images/glasses.jpg'},
+      {name: 'paintbrush', id: 4, path: '/images/paintbrush.jpg'},
+      {name: 'pen', id: 5, path: '/images/pen.jpg'},
+      {name: 'scissors', id: 6, path: '/images/scissors.jpg'},
+      {name: 'trowel', id: 7, path: '/images/trowel.jpg'},
+      {name: 'slinky', id: 8, path: '/images/slinky.jpg'},
+      {name: 'keys', id: 9, path: '/images/keys.jpg'},
+      {name: 'surge_protector', id: 10, path: '/images/surge_protector.jpg'},
+      {name: 'usb', id: 11, path: '/images/usb.jpeg'},
+      {name: 'camera', id: 12, path: '/images/camera.jpg'},
     ],
     items: [],
     findTitle: "",
@@ -24,7 +28,7 @@ var app = new Vue({
   methods: {
     async addNewItem(){
       try {
-        let result = await axios.post("/api/items" + this.title, {
+        let result = await axios.post("/api/items", {
           title: this.title,
           path: this.selected.path
         });
@@ -37,6 +41,7 @@ var app = new Vue({
       try {
         let response = await axios.get("/api/items");
         this.items = response.data;
+        console.log(response);
         return true;
       } catch (error) {
         console.log(error);
@@ -48,7 +53,8 @@ var app = new Vue({
     },
     async deleteItem(item) {
       try {
-        let response = await axios.delete("/api/items/" + item.id);
+        let response = await axios.delete("/api/items?id=" + item.id);
+        console.log(response);
         this.findItem = null;
         this.getItems();
         return true;
