@@ -39,7 +39,16 @@ app.get('/api/items', async (req, res) => {
   }
 });
 
-// app.delete('api/items/:id', async (req, res) => {
-//   db.items.removeByID(req.params.id)
-// })
+app.delete('/api/items/:id', async (req, res) => {
+  try {
+    let querySnapshot = await itemsRef.get();
+    let item = itemsRef.doc(req.params.id.toString());
+    await itemsRef.doc(req.params.id.toString()).delete();
+    res.send(item);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+
+})
 exports.app = functions.https.onRequest(app);
