@@ -38,4 +38,8 @@ app.get('/api/items', async (req, res) => {
       res.sendStatus(500);
   }
 });
+
+// app.delete('api/items/:id', async (req, res) => {
+//   db.items.removeByID(req.params.id)
+// })
 exports.app = functions.https.onRequest(app);

@@ -53,7 +53,7 @@ var app = new Vue({
     },
     async deleteItem(item) {
       try {
-        let response = await axios.delete("/api/items?id=" + item.id);
+        let response = await axios.delete("/api/items/" + item.id);
         console.log(response);
         this.findItem = null;
         this.getItems();
